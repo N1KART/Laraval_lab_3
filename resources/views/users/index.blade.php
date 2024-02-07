@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('loyauts.app')
+
+@section('title', 'Users')
+
+@section('content')
+    <div class="container">    
     <h4>Users</h4>
+    <a href="{{route('users.create')}}">Adauga</a>
     @forelse ($users as $user )
         <div>
             <b>Name : </b>{{$user -> name }} <br>
@@ -16,5 +14,6 @@
     @empty
         <p>Nu sunt utilizatori</p>
     @endforelse
-</body>
-</html>
+    {{ $users->links()}}
+</div>
+@endsection

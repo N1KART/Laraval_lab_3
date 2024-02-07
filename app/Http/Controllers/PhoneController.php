@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Phone;
+use App\Models\User;
 
 class PhoneController extends Controller
 {
@@ -10,8 +12,9 @@ class PhoneController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        
+    { 
+        $phones = Phone::all();
+        return view('phones.index', ['phones' => $phones]);
     }
 
     /**
@@ -19,7 +22,8 @@ class PhoneController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view('phones.create', ['users' => $users]);
     }
 
     /**
@@ -27,7 +31,10 @@ class PhoneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Phone::create($request->all());
+        return redirect()
+            ->route('phones.index')
+            ->with('succes', 'Telefonul a fost adaugat cu succes');
     }
 
     /**
